@@ -8,6 +8,7 @@
 #include <QDebug>
 #include <QList>
 #include <QGraphicsTextItem>
+
 class TPSDraw : public QGraphicsScene
 {
 public:

@@ -11,8 +11,8 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    /*ui->setupUi(this);
-    QList<QList<QPair<int,int>>> cities;
+    ui->setupUi(this);
+    /*QList<QList<QPair<int,int>>> cities;
     QList<QPair<int,int>> city;
     QPair<int,int> pair;
     pair.first = 1;
