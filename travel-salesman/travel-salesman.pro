@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2019-07-21T16:52:34
+# Project created by QtCreator 2019-07-21T17:16:25
 #
 #-------------------------------------------------
 
@@ -8,7 +8,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = tsp
+TARGET = travel-salesman
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -26,14 +26,10 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp \
-    tpsdraw.cpp \
-    tsp.cpp
+        mainwindow.cpp
 
 HEADERS += \
-        mainwindow.h \
-    tpsdraw.h \
-    tsp.h
+        mainwindow.h
 
 FORMS += \
         mainwindow.ui
