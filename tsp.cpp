@@ -6,11 +6,11 @@ Tsp::Tsp()
     nStartNode = 0;
 
 }
-Tsp::Tsp(QList<QList<double> > distance){
+Tsp::Tsp(QVector<QVector<double> > distance){
     Tsp(0,distance);
 }
 
-Tsp::Tsp(int startNode,QList<QList<double> > distance){
+Tsp::Tsp(int startNode,QVector<QVector<double> > distance){
 
     m_distance = distance;
     N = distance.size();
@@ -20,7 +20,7 @@ Tsp::Tsp(int startNode,QList<QList<double> > distance){
 
 }
 
-double Tsp::tspSolver(int i,int state,QList<QList<double> >memo,QList<QList<int> >prev){
+double Tsp::tspSolver(int i,int state,QVector<QVector<double> >memo,QVector<QVector<int> >prev){
 
     // Done this tour. Return cost of going back to start node.
     if(state == nFinishNode){
@@ -54,8 +54,8 @@ double Tsp::tspSolver(int i,int state,QList<QList<double> >memo,QList<QList<int>
 void Tsp::solve(){
 
     int state = 1 << nStartNode;
-    QList<QList<double> > memo;
-    QList<QList<int> > prev;
+    QVector<QVector<double> > memo;
+    QVector<QVector<int> > prev;
 
     minTourCost = tspSolver(nStartNode,state,memo,prev);
 
@@ -78,7 +78,7 @@ void Tsp::solve(){
 
 }
 
-QList<int> Tsp::getTour(){
+QVector<int> Tsp::getTour(){
 
     if(! m_isSolved){
         solve();

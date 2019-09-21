@@ -2,31 +2,32 @@
 #define TSP_H
 
 #include <QObject>
-#include <QList>
+#include <QVector>
 #include <QDebug>
+#include <QVector>
 
 
 class Tsp
 {
 public:
     Tsp();
-    Tsp(QList<QList<double> > distance);
-    Tsp(int startNode,QList<QList<double> > distance);
+    Tsp(QVector<QVector<double> > distance);
+    Tsp(int startNode,QVector<QVector<double> > distance);
 
-    QList<int> getTour();
+    QVector<int> getTour();
     double getTourCost();
     void solve();
-    double tspSolver(int i,int state,QList<QList<double> >memo,QList<QList<int> >prev);
+    double tspSolver(int i,int state,QVector<QVector<double> >memo,QVector<QVector<int> >prev);
 
 
 private:
     int N;
     int nStartNode;
     int nFinishNode;
-    QList<QList<double> > m_distance;
+    QVector<QVector<double> > m_distance;
     double minTourCost = 99999.99;
 
-    QList<int> tour;
+    QVector<int> tour;
     bool m_isSolved = false;
 
 };
