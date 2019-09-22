@@ -11,13 +11,13 @@ class Tsp
 {
 public:
     Tsp();
-    Tsp(QVector<QVector<double> > distance);
+    Tsp(const QVector<QVector<double> > &distance);
     Tsp(int startNode,QVector<QVector<double> > distance);
 
     QVector<int> getTour();
     double getTourCost();
     void solve();
-    double tspSolver(int i,int state,QVector<QVector<double> >memo,QVector<QVector<int> >prev);
+    double tspSolver(int i, int state, QVector<QVector<double> >memo, QVector<QVector<int> > &prev);
 
 
 private:

@@ -2,25 +2,26 @@
 
 Tsp::Tsp()
 {
-    N = 0;
-    nStartNode = 0;
+
 
 }
-Tsp::Tsp(QVector<QVector<double> > distance){
+Tsp::Tsp(const QVector<QVector<double> >& distance){
+
     Tsp(0,distance);
 }
 
 Tsp::Tsp(int startNode,QVector<QVector<double> > distance){
 
     m_distance = distance;
+//    qDebug() << "matrix size  " << distance.size() << endl;
     N = distance.size();
+//    qDebug() << "N : " << N << endl;
     nStartNode = startNode;
 
     nFinishNode = (1 << N) - 1;
-
 }
 
-double Tsp::tspSolver(int i,int state,QVector<QVector<double> >memo,QVector<QVector<int> >prev){
+double Tsp::tspSolver(int i,int state,QVector<QVector<double> >memo,QVector<QVector<int> >& prev){
 
     // Done this tour. Return cost of going back to start node.
     if(state == nFinishNode){
@@ -28,7 +29,7 @@ double Tsp::tspSolver(int i,int state,QVector<QVector<double> >memo,QVector<QVec
     }
     \
     // Return cached answer if already computed.
-    if(memo[i][state] != NULL){
+    if(memo[i][state] != 0){
         return memo[i][state];
     }
     double minCost = 9999.99;
@@ -36,6 +37,7 @@ double Tsp::tspSolver(int i,int state,QVector<QVector<double> >memo,QVector<QVec
 
     for(int next = 0;next < N;next++){
 
+        // Skip if the next node has already been visited.
         if ((state & (1 << next)) != 0) continue;
 
         int nextState = state | (1 << next);
@@ -54,8 +56,9 @@ double Tsp::tspSolver(int i,int state,QVector<QVector<double> >memo,QVector<QVec
 void Tsp::solve(){
 
     int state = 1 << nStartNode;
-    QVector<QVector<double> > memo;
-    QVector<QVector<int> > prev;
+    qDebug() << "size " << N << endl;
+    QVector<QVector<double> > memo(N,QVector<double>(1 << N ));
+    QVector<QVector<int> > prev(N, QVector<int>(1 << N));
 
     minTourCost = tspSolver(nStartNode,state,memo,prev);
 
@@ -65,7 +68,7 @@ void Tsp::solve(){
     while(true) {
         tour.append(index);
         int nextIndex = prev[index][state];
-        if(nextIndex == NULL){
+        if(nextIndex == 0){
             qDebug() << "next index is null";
             break;
         }
@@ -83,6 +86,7 @@ QVector<int> Tsp::getTour(){
     if(! m_isSolved){
         solve();
     }
+
     return tour;
 }
 double Tsp::getTourCost(){
