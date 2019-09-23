@@ -8,7 +8,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    QString path = QFileDialog::getOpenFileName(nullptr,"Open Image", "/", "Text Files (*.txt)");
+    QString path = QFileDialog::getOpenFileName(nullptr,"Open Image", "../", "Text Files (*.txt)");
     QFile file(path);
     file.open(QIODevice::ReadOnly | QIODevice::Text);
     QTextStream in(&file);
@@ -20,8 +20,7 @@ int main(int argc, char *argv[])
 
     for(int i = 0; i<N; i++) {
         QStringList line = in.readLine().split(" ");
-        qPath[line[0].toInt()][line[1].toInt()] = line[2].toInt();
-        qPath[line[1].toInt()][line[0].toInt()] = line[2].toInt();
+        qPath[line[0].toInt()][line[1].toInt()] =  qPath[line[1].toInt()][line[0].toInt()] = line[2].toInt();
     }
 
     Tsp tsp(0,qPath);
