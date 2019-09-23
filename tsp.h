@@ -1,6 +1,7 @@
 #ifndef TSP_H
 #define TSP_H
 
+#include <iostream>
 #include <QObject>
 #include <QVector>
 #include <QDebug>

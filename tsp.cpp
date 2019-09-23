@@ -13,9 +13,7 @@ Tsp::Tsp(const QVector<QVector<double> >& distance){
 Tsp::Tsp(int startNode,QVector<QVector<double> > distance){
 
     m_distance = distance;
-//    qDebug() << "matrix size  " << distance.size() << endl;
     N = distance.size();
-//    qDebug() << "N : " << N << endl;
     nStartNode = startNode;
 
     // The finished state is when the finished state mask has all bits are set to
@@ -57,14 +55,15 @@ double Tsp::tspSolver(int i,int state,QVector<QVector<double> >memo,QVector<QVec
 
 void Tsp::solve(){
 
+    // 1 << N = 2^N
     int state = 1 << nStartNode;
-    qDebug() << "size " << N << endl;
     QVector<QVector<double> > memo(N,QVector<double>(1 << N ));
     QVector<QVector<int> > prev(N, QVector<int>(1 << N));
 
     minTourCost = tspSolver(nStartNode,state,memo,prev);
 
     //regenerate path
+    //index = 0 as startNode is always zero
     int index = nStartNode;
 
     while(true) {
@@ -78,6 +77,7 @@ void Tsp::solve(){
         state = nextState;
         index = nextIndex;
     }
+
     tour.append(nStartNode);
     m_isSolved = true;
 

@@ -11,7 +11,6 @@ void TPSDraw::render()
 
     for(int i = 0;i<this->cities.length();i++)
     {
-        qDebug()<<i;
         this->addRect(i*150,0,100,50,QPen(Qt::black),QBrush(Qt::red));
 
         QGraphicsTextItem* num = new QGraphicsTextItem(QString::number(cities[i]));
