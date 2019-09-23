@@ -1,45 +1,36 @@
 #include "mainwindow.h"
 #include "tsp.h"
 #include <QApplication>
+#include <QFileDialog>
 #include <iostream>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-
-    //size of matrix
-    const int N = 6;
+    QString path = QFileDialog::getOpenFileName(nullptr,"Open Image", "/", "Text Files (*.txt)");
+    QFile file(path);
+    file.open(QIODevice::ReadOnly | QIODevice::Text);
+    QTextStream in(&file);
+    int N = in.readLine().toInt();
     QVector<QVector<double> > qPath(N);
     for(int i = 0;i<qPath.size();i++){
         qPath[i].fill(10000,N);
     }
 
-    // Create adjacency matrix
-    qPath[1][4] = qPath[4][1] = 2;
-    qPath[4][2] = qPath[2][4] = 4;
-    qPath[2][3] = qPath[3][2] = 6;
-    qPath[3][0] = qPath[0][3] = 8;
-    qPath[0][5] = qPath[5][0] = 10;
-    qPath[5][1] = qPath[1][5] = 12;
+    for(int i = 0; i<N; i++) {
+        QStringList line = in.readLine().split(" ");
+        qPath[line[0].toInt()][line[1].toInt()] = line[2].toInt();
+        qPath[line[1].toInt()][line[0].toInt()] = line[2].toInt();
+    }
 
     Tsp tsp(0,qPath);
     tsp.solve();
     QVector<int> result = tsp.getTour();
+    qDebug()<<result;
     double tourCost = tsp.getTourCost();
     TPSDraw draw(result);
     draw.render();
-    std::cout << "tour cost "  << tourCost << std::endl;
-
-    for(int i = 0;i < result.size();i++){
-        qDebug() << "path: " <<  result[i] << " ";
-
-    }
-
-
-    MainWindow w;
-    //    w.show();
-
 
     return a.exec();
 }

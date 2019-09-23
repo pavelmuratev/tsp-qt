@@ -8,9 +8,10 @@ TPSDraw::TPSDraw(QVector<int> cities)
 
 void TPSDraw::render()
 {
-    qDebug()<<cities.size();
+
     for(int i = 0;i<this->cities.length();i++)
     {
+        qDebug()<<i;
         this->addRect(i*150,0,100,50,QPen(Qt::black),QBrush(Qt::red));
 
         QGraphicsTextItem* num = new QGraphicsTextItem(QString::number(cities[i]));
@@ -22,24 +23,8 @@ void TPSDraw::render()
             this->addLine(i*150+100,25,i*150+150,25);
         }
     }
-
     this->view->setScene(this);
     this->view->show();
-}
-
-int TPSDraw::getMinDistance(QVector<QPair<int,int>> city)
-{
-    int min = INT_MAX;
-    int index = 0;
-    for(int i = 0;i<city.length();i++)
-    {
-        if(city[i].second<min)
-        {
-            min = city[i].second;
-            index = i;
-        }
-    }
-    return index;
 }
 
 void TPSDraw::setCities(QVector<int> cities)

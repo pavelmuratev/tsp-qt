@@ -21,7 +21,6 @@ public:
 private:
     QGraphicsView* view;
     QVector<int> cities;
-    int getMinDistance(QVector<QPair<int,int>> city);
 };
 
 #endif // TPSDRAW_H
