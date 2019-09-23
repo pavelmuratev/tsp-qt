@@ -18,6 +18,8 @@ Tsp::Tsp(int startNode,QVector<QVector<double> > distance){
 //    qDebug() << "N : " << N << endl;
     nStartNode = startNode;
 
+    // The finished state is when the finished state mask has all bits are set to
+    // one (meaning all the nodes have been visited).
     nFinishNode = (1 << N) - 1;
 }
 
