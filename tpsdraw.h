@@ -12,16 +12,16 @@
 class TPSDraw : public QGraphicsScene
 {
 public:
-    TPSDraw(QList<int> cities);
+    TPSDraw(QVector<int> cities);
     void render();
-    void setCities(QList<int> cities);
-    QList<int> getCities();
+    void setCities(QVector<int> cities);
+    QVector<int> getCities();
     QGraphicsView *getView() const;
 
 private:
     QGraphicsView* view;
-    QList<int> cities;
-    int getMinDistance(QList<QPair<int,int>> city);
+    QVector<int> cities;
+    int getMinDistance(QVector<QPair<int,int>> city);
 };
 
 #endif // TPSDRAW_H

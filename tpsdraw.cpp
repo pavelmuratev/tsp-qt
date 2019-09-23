@@ -1,6 +1,6 @@
 #include "tpsdraw.h"
 
-TPSDraw::TPSDraw(QList<int> cities)
+TPSDraw::TPSDraw(QVector<int> cities)
 {
     this->cities = cities;
     this->view = new QGraphicsView();
@@ -27,7 +27,7 @@ void TPSDraw::render()
     this->view->show();
 }
 
-int TPSDraw::getMinDistance(QList<QPair<int,int>> city)
+int TPSDraw::getMinDistance(QVector<QPair<int,int>> city)
 {
     int min = INT_MAX;
     int index = 0;
@@ -42,12 +42,12 @@ int TPSDraw::getMinDistance(QList<QPair<int,int>> city)
     return index;
 }
 
-void TPSDraw::setCities(QList<int> cities)
+void TPSDraw::setCities(QVector<int> cities)
 {
     this->cities = cities;
 }
 
-QList<int> TPSDraw::getCities()
+QVector<int> TPSDraw::getCities()
 {
     return this->cities;
 }

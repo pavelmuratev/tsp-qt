@@ -28,6 +28,8 @@ int main(int argc, char *argv[])
         tsp.solve();
         QVector<int> result = tsp.getTour();
         double tourCost = tsp.getTourCost();
+        TPSDraw draw(result);
+        draw.render();
         std::cout << "tour cost "  << tourCost << std::endl;
 
         for(int i = 0;i < result.size();i++){
