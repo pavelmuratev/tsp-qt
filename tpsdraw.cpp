@@ -12,7 +12,7 @@ void TPSDraw::render()
 
     for(int i = 0;i<this->cities.length();i++)
     {
-        this->addRect(i*150,0,100,50,QPen(Qt::black),QBrush(Qt::red));
+        this->addRect(i*150,0,100,50,QPen(Qt::black),QBrush(Qt::blue));
 
         QGraphicsTextItem* num = new QGraphicsTextItem(QString::number(cities[i]));
 
@@ -28,7 +28,7 @@ void TPSDraw::render()
 
     }
 
-    this->addRect(150,100,100,50,QPen(Qt::black),QBrush(Qt::red));
+    this->addRect(150,100,100,50,QPen(Qt::black),QBrush(Qt::blue));
 
     QGraphicsTextItem* cost = new QGraphicsTextItem(QString::number( m_cost ));
 
