@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
     qDebug()<<result;
     double tourCost = tsp.getTourCost();
     std::cout << "min tour cost " << tourCost << std::endl;
-    TPSDraw draw(result);
+    TPSDraw draw(result,tourCost);
     draw.render();
 
     return a.exec();

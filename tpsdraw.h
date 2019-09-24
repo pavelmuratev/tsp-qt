@@ -12,7 +12,7 @@
 class TPSDraw : public QGraphicsScene
 {
 public:
-    TPSDraw(QVector<int> cities);
+    TPSDraw(QVector<int> cities, double cost);
     void render();
     void setCities(QVector<int> cities);
     QVector<int> getCities();
@@ -21,6 +21,7 @@ public:
 private:
     QGraphicsView* view;
     QVector<int> cities;
+    double m_cost;
 };
 
 #endif // TPSDRAW_H
